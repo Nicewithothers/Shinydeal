@@ -9,19 +9,25 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
-            Icons.tram_outlined,
-            size: 64,
-            color: Colors.yellowAccent
-          ),
-          const UsernameTextField(),
-          const PasswordTextField(),
-          ElevatedButton(
-            onPressed: () => context.go('/querymenu'),
-            child: const Text('Login'),
-          ),
+          Expanded(flex: 2, child: Container(color: Colors.transparent)),
+          Expanded(
+              flex: 6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const UsernameTextField(),
+                  const SizedBox(height: 50),
+                  const PasswordTextField(),
+                  ElevatedButton(
+                    onPressed: () => context.go('/querymenu'),
+                    child: const Text('Login'),
+                  ),
+                ],
+              )),
+          Expanded(flex: 2, child: Container(color: Colors.transparent)),
         ],
       ),
     );
