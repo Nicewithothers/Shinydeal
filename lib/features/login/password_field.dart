@@ -7,6 +7,7 @@ class PasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return const TextField(
       decoration: InputDecoration(
+        border: OutlineInputBorder(),
         label: Text('Password'),
         icon: Icon(Icons.key),
       ),

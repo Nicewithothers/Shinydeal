@@ -8,9 +8,7 @@ class QueryMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ElevatedButton(
-        onPressed: () {
-          context.go('/');
-        },
+        onPressed: () => context.go('/'),
         child: const Text('Back'),
       )
     );

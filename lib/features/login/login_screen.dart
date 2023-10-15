@@ -9,9 +9,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menetrendek_app'),
-      ),
       body: Column(
         children: [
           const Icon(
@@ -22,9 +19,7 @@ class LoginScreen extends StatelessWidget {
           const UsernameTextField(),
           const PasswordTextField(),
           ElevatedButton(
-            onPressed: () {
-              context.go('/querymenu');
-            },
+            onPressed: () => context.go('/querymenu'),
             child: const Text('Login'),
           ),
         ],

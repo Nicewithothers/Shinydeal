@@ -11,9 +11,7 @@ class _UsernameFieldState extends State<UsernameTextField>{
   String? _errorText;
 
   void _validator(String value){
-    setState(() {
-      _errorText = value.isEmpty ? 'Username is missing!' : null;
-    });
+    setState(() => _errorText = value.isEmpty ? 'Username is missing!' : null);
   }
 
   @override
@@ -21,6 +19,7 @@ class _UsernameFieldState extends State<UsernameTextField>{
     return TextField(
       onChanged: _validator,
       decoration: InputDecoration(
+        border: const OutlineInputBorder(),
         label: const Text('Username'),
         icon: const Icon(Icons.person),
         errorText: _errorText,
