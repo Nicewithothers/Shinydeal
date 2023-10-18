@@ -45,7 +45,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: _router,
       theme: ThemeData(
-          textTheme: GoogleFonts.manropeTextTheme(Theme.of(context).textTheme)),
+          textTheme: GoogleFonts.manropeTextTheme(Theme.of(context).textTheme),
+          useMaterial3: true
+          ),
       debugShowCheckedModeBanner: false,
     );
   }

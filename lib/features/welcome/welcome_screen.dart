@@ -12,7 +12,7 @@ class WelcomeScreen extends StatelessWidget {
           gradient: LinearGradient(
         begin: Alignment.bottomLeft,
         end: Alignment.topRight,
-        colors: [Colors.lightBlue, Colors.orange],
+        colors: [Color.fromRGBO(185, 242, 255, 100), Colors.white],
       )),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -27,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
                   children: [
                     const Image(
                         image: AssetImage(
-                      'images/app_icon.png',
+                      './assets/images/app_icon.png',
                     )),
                     Text(
                       'menetrendapp'.toUpperCase(),
