@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menetrend_app/features/login/login_screen.dart';
+import 'package:menetrend_app/features/newpassword/newpassword_screen.dart';
 import 'package:menetrend_app/features/querymenu/query_menu.dart';
+import 'package:menetrend_app/features/signup/signup_screen.dart';
 import 'package:menetrend_app/features/welcome/welcome_screen.dart';
 
 void main() {
@@ -24,7 +26,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/signup',
-      builder: (context, state) => const QueryMenuScreen(),
+      builder: (context, state) => const SignupScreen(),
     ),
     GoRoute(
       path: '/querymenu',
@@ -32,7 +34,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/newpassword',
-      builder: (context, state) => const QueryMenuScreen(),
+      builder: (context, state) => const NewPasswordScreen(),
     ),
   ],
 );

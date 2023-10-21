@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static final ButtonStyle _buttonSkin = ElevatedButton.styleFrom(
+    fixedSize: const Size(double.maxFinite, 40),
+    backgroundColor: const Color.fromRGBO(128, 0, 32, 100),
+    foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
+    elevation: 12,
+  );
+
   const WelcomeScreen({super.key});
 
   @override
@@ -10,9 +17,14 @@ class WelcomeScreen extends StatelessWidget {
         body: Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-        begin: Alignment.bottomLeft,
-        end: Alignment.topRight,
-        colors: [Color.fromRGBO(185, 242, 255, 100), Colors.white],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+        colors: [
+          Color.fromRGBO(222, 11, 43, 1),
+          Color.fromRGBO(222, 11, 43, 100),
+          Color.fromRGBO(222, 11, 43, 1),
+        ],
+        tileMode: TileMode.decal,
       )),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -21,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
           Expanded(
             flex: 6,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
                   children: [
@@ -40,21 +52,21 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FilledButton(
-                        style: FilledButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(128, 0, 32, 100)),
+                    ElevatedButton(
+                        style: _buttonSkin,
                         onPressed: () => context.go('/login'),
-                        child: Text('Login'.toUpperCase())),
-                    FilledButton(
-                        style: FilledButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(128, 0, 32, 100)),
+                        child: const Text('Login',
+                            style: TextStyle(fontSize: 18))),
+                    ElevatedButton(
+                        style: _buttonSkin,
                         onPressed: () => context.go('/signup'),
-                        child: Text('sign up'.toUpperCase())),
+                        child: const Text(
+                          'Sign up',
+                          style: TextStyle(fontSize: 18),
+                        )),
                   ],
                 ),
               ],
