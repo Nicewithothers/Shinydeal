@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menetrend_app/features/login/login_screen.dart';
@@ -8,11 +7,7 @@ import 'package:menetrend_app/features/querymenu/query_menu.dart';
 import 'package:menetrend_app/features/signup/signup_screen.dart';
 import 'package:menetrend_app/features/welcome/welcome_screen.dart';
 
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(const MainApp());
-}
+void main() => runApp(const MainApp());
 
 final _router = GoRouter(
   routes: [
