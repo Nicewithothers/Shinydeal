@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1011380059267",
+    "project_id": "shinydeal-14d76",
+    "storage_bucket": "shinydeal-14d76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011380059267:android:d8741aa9e7c6cb2f916fb6",
+        "android_client_info": {
+          "package_name": "com.example.menetrend_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2h3PJ5SOuBI5wvJOcPbK_kmrBeCRXelM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

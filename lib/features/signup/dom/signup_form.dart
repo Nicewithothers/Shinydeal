@@ -1,15 +1,17 @@
-class SignupForm {
-  SignupForm({
-    required this.email,
-    required this.username,
-    required this.password,
-    required this.rePassword
-});
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  String email;
-  String username;
-  String password;
-  String rePassword;
+part 'signup_form.freezed.dart';
+
+@freezed
+class SignupForm with _$SignupForm {
+  const SignupForm._();
+
+  factory SignupForm({
+    required String email,
+    required String username,
+    required String password,
+    required String rePassword
+}) = _SignupForm;
 
   String? get emailErrorText => email.isEmpty ? 'Email is missing!' : null;
   String? get usernameErrorText => username.isEmpty ? 'Username is missing!' : null;

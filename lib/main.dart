@@ -1,46 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:menetrend_app/features/login/login_screen.dart';
-import 'package:menetrend_app/features/newpassword/newpassword_screen.dart';
-import 'package:menetrend_app/features/querymenu/query_menu.dart';
-import 'package:menetrend_app/features/signup/signup_screen.dart';
-import 'package:menetrend_app/features/welcome/welcome_screen.dart';
+import 'package:menetrend_app/configuration/firebase_options.dart';
+import 'package:menetrend_app/router.dart';
 
-void main() => runApp(const MainApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    const ProviderScope(
+      child: MainApp()
+      )
+  );
+}
 
-final _router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const WelcomeScreen(),
-    ),
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginScreen(),
-    ),
-    GoRoute(
-      path: '/signup',
-      builder: (context, state) => const SignupScreen(),
-    ),
-    GoRoute(
-      path: '/querymenu',
-      builder: (context, state) => const QueryMenuScreen(),
-    ),
-    GoRoute(
-      path: '/newpassword',
-      builder: (context, state) => const NewPasswordScreen(),
-    ),
-  ],
-);
-
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      routerConfig: _router,
+      routerConfig: ref.watch(routerProv),
       theme: ThemeData(
           textTheme: GoogleFonts.manropeTextTheme(Theme.of(context).textTheme),
           useMaterial3: true

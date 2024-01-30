@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCu3hJa2FIRYXty2v87TtBvYb_8txlmZ0g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1011380059267</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.menetrendApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>shinydeal-14d76</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shinydeal-14d76.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1011380059267:ios:768e2e097ebb6a8d916fb6</string>
+</dict>
+</plist>
