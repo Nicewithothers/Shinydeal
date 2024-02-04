@@ -20,9 +20,9 @@ class WelcomeScreen extends StatelessWidget {
         begin: Alignment.bottomCenter,
         end: Alignment.topCenter,
         colors: [
-          Color.fromRGBO(222, 11, 43, 1),
-          Color.fromRGBO(222, 11, 43, 100),
-          Color.fromRGBO(222, 11, 43, 1),
+              Color.fromRGBO(70, 70, 70, 1),
+              Color.fromRGBO(110, 110, 110, 1),
+              Color.fromRGBO(70, 70, 70, 1),
         ],
         tileMode: TileMode.decal,
       )),

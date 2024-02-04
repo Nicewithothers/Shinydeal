@@ -1,14 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:menetrend_app/features/core/fields/email_field.dart';
 import 'package:menetrend_app/features/core/fields/username_field.dart';
 import 'package:menetrend_app/features/core/fields/password_field.dart';
+import 'package:menetrend_app/features/signup/app/signup_controller.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends ConsumerWidget {
   const SignupScreen({super.key});
 
+  Future<void> _signUp(WidgetRef ref) async {
+    final router = GoRouter.of(ref.context);
+    final scaffoldMessenger = ScaffoldMessenger.of(ref.context);
+    final signupCtrl = ref.read(signupCtrlProvider.notifier);
+    try {
+      final user = await signupCtrl.signUp();
+      scaffoldMessenger.showMaterialBanner(
+        MaterialBanner(
+          actions: [
+             TextButton(
+              onPressed: () => scaffoldMessenger.removeCurrentMaterialBanner(),
+              child: const Text('Dismiss')
+            )
+          ],
+          content: Text('Signed in as ${user.email}!')
+          )
+      );
+      router.go('/jewelleryorder');
+    } catch (error) {
+      scaffoldMessenger.showMaterialBanner(
+        MaterialBanner(
+          actions: [
+             TextButton(
+              onPressed: () => scaffoldMessenger.removeCurrentMaterialBanner(),
+              child: const Text('Retry')
+            )
+          ],
+          content: const Text('Failed to sign up! Try again!')
+          )
+      );
+    }
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final signupForm = ref.watch(signupCtrlProvider);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
@@ -41,16 +77,28 @@ class SignupScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white)),
                           const SizedBox(height: 100),
-                          const EmailTextField(),
+                          EmailTextField(
+                            valueChanged: ref.read(signupCtrlProvider.notifier).updateEmail,
+                            errorText: signupForm.emailErrorText,
+                          ),
                           const SizedBox(height: 10),
-                          const UsernameTextField(),
+                          UsernameTextField(
+                            valueChanged: ref.read(signupCtrlProvider.notifier).updateUsername,
+                            errorText: signupForm.usernameErrorText,
+                          ),
                           const SizedBox(height: 10),
-                          const PasswordTextField(),
+                          PasswordTextField(
+                            valueChanged: ref.read(signupCtrlProvider.notifier).updatePassword,
+                            errorText: signupForm.passwordErrorText,
+                          ),
                           const SizedBox(height: 10),
-                          const PasswordTextField(label: 'Re-Password'),
+                          PasswordTextField(
+                            valueChanged: ref.read(signupCtrlProvider.notifier).updateRePassword,
+                            errorText: signupForm.rePasswordErrorText,
+                            label: 'Re-Password'),
                           const SizedBox(height: 150),
                           ElevatedButton(
-                            onPressed: () => context.go('/querymenu'),
+                            onPressed: !signupForm.isFormValid ? null : () => _signUp(ref),
                             style: ElevatedButton.styleFrom(
                               fixedSize: const Size(double.maxFinite, 40),
                               backgroundColor:
@@ -59,7 +107,7 @@ class SignupScreen extends StatelessWidget {
                                   const Color.fromRGBO(255, 255, 255, 1),
                               elevation: 12,
                             ),
-                            child: Text('Register'.toUpperCase()),
+                            child: const Text('Register'),
                           ),
                         ],
                       ),
