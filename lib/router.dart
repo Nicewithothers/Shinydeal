@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:menetrend_app/features/auth/app/auth_controller.dart';
 import 'package:menetrend_app/features/auth/dom/auth_repository.dart';
-import 'package:menetrend_app/features/login/login_screen.dart';
+import 'package:menetrend_app/features/login/presentation/login_screen.dart';
 import 'package:menetrend_app/features/newpassword/newpassword_screen.dart';
 import 'package:menetrend_app/features/jewellery_order/presentation/jewellery_order_screen.dart';
 import 'package:menetrend_app/features/profile/presentation/profile_screen.dart';
-import 'package:menetrend_app/features/signup/pres/signup_screen.dart';
+import 'package:menetrend_app/features/signup/presentation/signup_screen.dart';
 import 'package:menetrend_app/features/welcome/welcome_screen.dart';
 
 final _gkey = GlobalKey<NavigatorState>();

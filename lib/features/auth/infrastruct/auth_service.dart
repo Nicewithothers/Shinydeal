@@ -10,19 +10,13 @@ class FirebaseAuthRepository extends AuthRepository {
   }
 
   @override
-  Future<void> signInUser({required String email, required String password}) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-  }
+  Future<void> signInUser({required String email, required String password}) async => await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
 
   @override
-  Stream<AuthState> stateWatch() {
-    return FirebaseAuth.instance.userChanges().map((user) => (user == null) ? const Unverified() : Verified(user: data.User(uid: user.uid, name: user.displayName ?? 'Unknown', email: user.email ?? 'Unkwown')));
-  }
+  Stream<AuthState> stateWatch() => FirebaseAuth.instance.userChanges().map((user) => (user == null) ? const Unverified() : Verified(user: data.User(uid: user.uid, name: user.displayName ?? 'Unknown', email: user.email ?? 'Unkwown')));
 
   @override
-  Future<void> signOutUser() {
-    return FirebaseAuth.instance.signOut();
-  }
+  Future<void> signOutUser() => FirebaseAuth.instance.signOut();
 }
 
 final authProvider = Provider<AuthRepository>((ref) => FirebaseAuthRepository());

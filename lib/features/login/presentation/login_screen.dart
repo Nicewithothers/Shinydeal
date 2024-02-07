@@ -1,13 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:menetrend_app/features/core/fields/email_field.dart';
 import 'package:menetrend_app/features/core/fields/password_field.dart';
+import 'package:menetrend_app/features/login/app/login_controller.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
+    Future<void> _signIn(WidgetRef ref) async {
+    final router = GoRouter.of(ref.context);
+    final scaffoldMessenger = ScaffoldMessenger.of(ref.context);
+    final signupCtrl = ref.read(signinCtrlProvider.notifier);
+    try {
+      final user = await signupCtrl.signIn();
+      scaffoldMessenger.showMaterialBanner(
+        MaterialBanner(
+          actions: [
+             TextButton(
+              onPressed: () => scaffoldMessenger.removeCurrentMaterialBanner(),
+              child: const Text('Dismiss')
+            )
+          ],
+          content: Text('Signed in as ${user.email}!')
+          )
+      );
+      router.go('/jewelleryorder');
+    } catch (error) {
+      scaffoldMessenger.showMaterialBanner(
+        MaterialBanner(
+          actions: [
+             TextButton(
+              onPressed: () => scaffoldMessenger.removeCurrentMaterialBanner(),
+              child: const Text('Retry')
+            )
+          ],
+          content: const Text('Failed to sign up! Try again!')
+          )
+      );
+    }
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginForm = ref.watch(signinCtrlProvider);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
@@ -40,12 +76,18 @@ class LoginScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white)),
                           const SizedBox(height: 100),
-                          const EmailTextField(),
+                          EmailTextField(
+                            errorText: loginForm.emailErrorText,
+                            valueChanged: ref.read(signinCtrlProvider.notifier).updateEmail,
+                          ),
                           const SizedBox(height: 10),
-                          const PasswordTextField(),
+                          PasswordTextField(
+                            errorText: loginForm.passwordErrorText,
+                            valueChanged: ref.read(signinCtrlProvider.notifier).updatePassword,
+                          ),
                           const SizedBox(height: 50),
                           ElevatedButton(
-                            onPressed: () => context.go('/querymenu'),
+                            onPressed: () => _signIn(ref),
                             style: ElevatedButton.styleFrom(
                               fixedSize: const Size(double.maxFinite, 40),
                               backgroundColor:

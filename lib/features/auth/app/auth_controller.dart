@@ -13,7 +13,6 @@ class AuthController extends Notifier<AuthState> {
   @override
   AuthState build() {
     ref.onDispose(() => _authSubscription?.cancel());
-    _authSubscription?.cancel();
     _authSubscription = ref.watch(authProvider).stateWatch().listen((authState) => state = authState);
     return const Unknown();
   }

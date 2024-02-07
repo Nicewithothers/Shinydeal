@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:menetrend_app/features/auth/app/auth_controller.dart';
 import 'package:menetrend_app/features/core/model/user.dart';
 import 'package:menetrend_app/features/signup/dom/signup_form.dart';
-import 'package:menetrend_app/features/signup/infrastructure/fb_signup_repository.dart';
+import 'package:menetrend_app/features/signup/infrastructure/fb_signup_rep.dart';
 
 class SignupController extends Notifier<SignupForm> {
   @override
@@ -21,9 +21,7 @@ class SignupController extends Notifier<SignupForm> {
 
   Future<User> signUp() async {
     if (state.isFormValid) {
-      final user = await ref.read(signupProvider).signUp(
-        signupForm: state
-        );
+      final user = await ref.read(signupProvider).signUp(signupForm: state);
       await ref.read(authCtrlProvider.notifier).signInUser(
         email: state.email,
         password: state.password

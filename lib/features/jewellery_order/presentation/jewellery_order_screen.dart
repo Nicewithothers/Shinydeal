@@ -13,10 +13,6 @@ class JewelleryOrderScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Jewellery order'),
       ),
-      body: ElevatedButton(
-        onPressed: () => context.go('/'),
-        child: const Text('Back'),
-      ),
       bottomNavigationBar: const BottomNavBar(),
     );
   }
