@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:menetrend_app/features/auth/app/auth_controller.dart';
 import 'package:menetrend_app/features/auth/dom/auth_repository.dart';
+import 'package:menetrend_app/features/core/fields/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:menetrend_app/features/login/presentation/login_screen.dart';
-import 'package:menetrend_app/features/newpassword/newpassword_screen.dart';
-import 'package:menetrend_app/features/jewellery_order/presentation/jewellery_order_screen.dart';
+import 'package:menetrend_app/features/newpassword/presentation/newpassword_screen.dart';
 import 'package:menetrend_app/features/profile/presentation/profile_screen.dart';
 import 'package:menetrend_app/features/signup/presentation/signup_screen.dart';
 import 'package:menetrend_app/features/welcome/welcome_screen.dart';
@@ -19,7 +19,7 @@ final routerProv = Provider<GoRouter>((ref) {
       case Verified():
         return (state.uri.toString() == '/login' || state.uri.toString() == '/signup') ? null : '/jewelleryorder';
       case Unverified():
-        return (state.uri.toString() == '/login' || state.uri.toString() == '/signup') ? null : '/login';
+        return (state.uri.toString() != '/jewelleryorder' && state.uri.toString() != '/profile') ? null : '/';
       default:
         return null;
     }
@@ -44,7 +44,7 @@ final routerProv = Provider<GoRouter>((ref) {
     ),
     GoRoute(
       path: '/jewelleryorder',
-      builder: (context, state) => const JewelleryOrderScreen(),
+      builder: (context, state) => const BottomNavBar(),
     ),
     GoRoute(
       path: '/newpassword',

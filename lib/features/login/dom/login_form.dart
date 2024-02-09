@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:menetrend_app/features/core/model/user.dart';
 
 part 'login_form.freezed.dart';
 
@@ -15,4 +16,8 @@ class LoginForm with _$LoginForm {
   String? get passwordErrorText => password.isEmpty ? 'Password is missing!' : null;
 
   bool get isFormValid => email.isNotEmpty && password.isNotEmpty;
+}
+
+abstract class LoginRepo{
+  Future<User> signIn({required LoginForm loginForm});
 }

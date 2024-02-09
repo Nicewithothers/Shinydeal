@@ -2,36 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:menetrend_app/features/core/fields/email_field.dart';
-import 'package:menetrend_app/features/core/fields/password_field.dart';
-import 'package:menetrend_app/features/login/app/login_controller.dart';
+import 'package:menetrend_app/features/newpassword/app/newpass_controller.dart';
 
-class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
+class NewPasswordScreen extends ConsumerWidget {
+  const NewPasswordScreen({super.key});
 
-    Future<void> _signIn(WidgetRef ref) async {
+    Future<void> _reqNewPass(WidgetRef ref) async {
     final router = GoRouter.of(ref.context);
-    final scaffoldMessenger = ScaffoldMessenger.of(ref.context);
-    final signupCtrl = ref.read(signinCtrlProvider.notifier);
+    final newPassCtrl = ref.read(newPassCtrlProvider.notifier);
     try {
-      final user = await signupCtrl.signIn();
-      scaffoldMessenger.showMaterialBanner(
-        MaterialBanner(
-          actions: [
-             TextButton(
-              onPressed: () => scaffoldMessenger.removeCurrentMaterialBanner(),
-              child: const Text('Dismiss')
-            )
-          ],
-          content: Text('Signed in as ${user.email}!')
-          )
-      );
-      router.go('/jewelleryorder');
+      await newPassCtrl.reqNewPass();
+      showDialog(
+        context: ref.context,
+        builder: (context) {
+          return AlertDialog(
+            content: const Text("Password recovery email sent! Check your inbox!"),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("OK"))
+            ],
+            icon: const Icon(Icons.check)
+          );
+        }
+        );
+      router.go('/login');
     } catch (error) {
       showDialog(
         context: ref.context,
         builder: (context) {
           return AlertDialog(
-            content: const Text("Failed to sign in! Try again!"),
+            content: const Text("Failed to send email! Try again!"),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -46,7 +47,7 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginForm = ref.watch(signinCtrlProvider);
+    final newPassForm = ref.watch(newPassCtrlProvider);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
@@ -73,24 +74,19 @@ class LoginScreen extends ConsumerWidget {
                       Column(
                         children: [
                           const SizedBox(height: 50),
-                          const Text('Login',
+                          const Text('New Password',
                               style: TextStyle(
                                   fontSize: 48,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white)),
                           const SizedBox(height: 100),
                           EmailTextField(
-                            errorText: loginForm.emailErrorText,
-                            valueChanged: ref.read(signinCtrlProvider.notifier).updateEmail,
-                          ),
-                          const SizedBox(height: 10),
-                          PasswordTextField(
-                            errorText: loginForm.passwordErrorText,
-                            valueChanged: ref.read(signinCtrlProvider.notifier).updatePassword,
+                            errorText: newPassForm.emailErrorText,
+                            valueChanged: ref.read(newPassCtrlProvider.notifier).updateEmail,
                           ),
                           const SizedBox(height: 50),
                           ElevatedButton(
-                            onPressed: () => _signIn(ref),
+                            onPressed: () => _reqNewPass(ref),
                             style: ElevatedButton.styleFrom(
                               fixedSize: const Size(double.maxFinite, 40),
                               backgroundColor:
@@ -99,29 +95,14 @@ class LoginScreen extends ConsumerWidget {
                                   const Color.fromRGBO(255, 255, 255, 1),
                               elevation: 12,
                             ),
-                            child: Text('Login'.toUpperCase()),
+                            child: Text('Request'.toUpperCase()),
                           ),
                           TextButton(
-                              onPressed: () => context.go('/newpassword'),
+                              onPressed: () => context.go('/login'),
                               style: const ButtonStyle(
                                   foregroundColor: MaterialStatePropertyAll(
                                       Color.fromRGBO(255, 255, 255, 1))),
-                              child: const Text("Forgot your password?")),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          const Divider(
-                            color: Colors.black,
-                            thickness: 0.5,
-                          ),
-                          TextButton(
-                              onPressed: () => context.go('/signup'),
-                              style: const ButtonStyle(
-                                  foregroundColor: MaterialStatePropertyAll(
-                                      Color.fromRGBO(255, 255, 255, 1))),
-                              child: const Text(
-                                  "Don't have an account? Sign up!")),
+                              child: const Text("Back")),
                         ],
                       ),
                     ],

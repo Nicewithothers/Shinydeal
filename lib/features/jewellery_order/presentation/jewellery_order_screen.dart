@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:menetrend_app/features/jewellery_order/app/jewelleries.dart';
-import 'package:menetrend_app/features/core/fields/bottom_nav_bar.dart';
 
 class JewelleryOrderScreen extends ConsumerWidget {
   const JewelleryOrderScreen({super.key});
@@ -13,7 +10,6 @@ class JewelleryOrderScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Jewellery order'),
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
