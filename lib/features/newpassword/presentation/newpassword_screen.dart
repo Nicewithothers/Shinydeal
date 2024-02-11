@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:menetrend_app/features/core/fields/email_field.dart';
-import 'package:menetrend_app/features/newpassword/app/newpass_controller.dart';
+import 'package:Shinydeal/features/core/fields/email_field.dart';
+import 'package:Shinydeal/features/newpassword/app/newpass_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewPasswordScreen extends ConsumerWidget {
   const NewPasswordScreen({super.key});
 
     Future<void> _reqNewPass(WidgetRef ref) async {
+    final _locale = AppLocalizations.of(ref.context);
     final router = GoRouter.of(ref.context);
     final newPassCtrl = ref.read(newPassCtrlProvider.notifier);
     try {
@@ -16,7 +18,7 @@ class NewPasswordScreen extends ConsumerWidget {
         context: ref.context,
         builder: (context) {
           return AlertDialog(
-            content: const Text("Password recovery email sent! Check your inbox!"),
+            content: Text(_locale!.newPasswordSuccess),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -32,11 +34,11 @@ class NewPasswordScreen extends ConsumerWidget {
         context: ref.context,
         builder: (context) {
           return AlertDialog(
-            content: const Text("Failed to send email! Try again!"),
+            content: Text(_locale!.newPasswordError),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Retry"))
+                child: Text(_locale.retryButton))
             ],
             icon: const Icon(Icons.warning)
           );
@@ -47,6 +49,7 @@ class NewPasswordScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _locale = AppLocalizations.of(ref.context);
     final newPassForm = ref.watch(newPassCtrlProvider);
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -74,8 +77,8 @@ class NewPasswordScreen extends ConsumerWidget {
                       Column(
                         children: [
                           const SizedBox(height: 50),
-                          const Text('New Password',
-                              style: TextStyle(
+                          Text(_locale!.newPassword,
+                              style: const TextStyle(
                                   fontSize: 48,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white)),
@@ -102,7 +105,7 @@ class NewPasswordScreen extends ConsumerWidget {
                               style: const ButtonStyle(
                                   foregroundColor: MaterialStatePropertyAll(
                                       Color.fromRGBO(255, 255, 255, 1))),
-                              child: const Text("Back")),
+                              child: Text(_locale.popRedirect)),
                         ],
                       ),
                     ],

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:menetrend_app/features/core/model/user.dart';
+import 'package:Shinydeal/features/core/model/user.dart';
 
 part 'login_form.freezed.dart';
 

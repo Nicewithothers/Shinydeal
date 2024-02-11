@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menetrend_app/features/auth/app/auth_controller.dart';
-import 'package:menetrend_app/features/core/model/user.dart';
-import 'package:menetrend_app/features/signup/dom/signup_form.dart';
-import 'package:menetrend_app/features/signup/infrastructure/fb_signup_rep.dart';
+import 'package:Shinydeal/features/auth/app/auth_controller.dart';
+import 'package:Shinydeal/features/core/model/user.dart';
+import 'package:Shinydeal/features/signup/dom/signup_form.dart';
+import 'package:Shinydeal/features/signup/infrastructure/fb_signup_rep.dart';
 
 class SignupController extends Notifier<SignupForm> {
   @override

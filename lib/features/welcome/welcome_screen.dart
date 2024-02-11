@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -36,7 +37,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       ),
     ]);
 
-    _controller = AnimationController(duration: const Duration(seconds: 15), vsync: this)
+    _controller =
+        AnimationController(duration: const Duration(seconds: 15), vsync: this)
           ..forward()
           ..repeat();
     _colorAnimation = _background.animate(_controller);
@@ -50,6 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final _locale = AppLocalizations.of(context);
     final ButtonStyle _buttonSkin = ElevatedButton.styleFrom(
       fixedSize: const Size(double.maxFinite, 40),
       backgroundColor: const Color.fromRGBO(128, 0, 32, 100),
@@ -84,7 +87,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         animation: _controller,
                         builder: (context, child) {
                           return Image(
-                            image: const AssetImage('./assets/images/app_icon.png'),
+                            image: const AssetImage(
+                                './assets/images/app_icon.png'),
                             color: _colorAnimation.value,
                           );
                         },
@@ -97,9 +101,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       ElevatedButton(
                           style: _buttonSkin,
                           onPressed: () => context.go('/login'),
-                          child: const Text('Login',
-                              style: TextStyle(fontSize: 18))),
-                      const SizedBox(height: 50),
+                          child: Text(_locale!.login,
+                              style: const TextStyle(fontSize: 18))),
+                      const SizedBox(height: 30),
                       ElevatedButton(
                           style: _buttonSkin,
                           onPressed: () => context.go('/signup'),
@@ -107,6 +111,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             'Sign up',
                             style: TextStyle(fontSize: 18),
                           )),
+                      const SizedBox(height: 30),
+                      ElevatedButton(
+                              style: _buttonSkin,
+                              onPressed: () {},
+                              child: Text(
+                                _locale.languageChange,
+                                style: const TextStyle(fontSize: 18),
+                              )),
                     ],
                   ),
                 ],

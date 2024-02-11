@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menetrend_app/features/auth/dom/auth_repository.dart';
-import 'package:menetrend_app/features/auth/infrastruct/auth_service.dart';
+import 'package:Shinydeal/features/auth/dom/auth_repository.dart';
+import 'package:Shinydeal/features/auth/infrastruct/auth_service.dart';
 
 class AuthController extends Notifier<AuthState> {
   StreamSubscription<AuthState>? _authSubscription;

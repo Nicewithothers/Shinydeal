@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menetrend_app/features/core/model/user.dart' as data;
-import 'package:menetrend_app/features/login/dom/login_form.dart';
+import 'package:Shinydeal/features/core/model/user.dart' as data;
+import 'package:Shinydeal/features/login/dom/login_form.dart';
 
 class FirebaseLoginRep extends LoginRepo {
   @override

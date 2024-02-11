@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:menetrend_app/features/auth/app/auth_controller.dart';
-import 'package:menetrend_app/features/auth/dom/auth_repository.dart';
-import 'package:menetrend_app/features/core/fields/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:menetrend_app/features/login/presentation/login_screen.dart';
-import 'package:menetrend_app/features/newpassword/presentation/newpassword_screen.dart';
-import 'package:menetrend_app/features/profile/presentation/profile_screen.dart';
-import 'package:menetrend_app/features/signup/presentation/signup_screen.dart';
-import 'package:menetrend_app/features/welcome/welcome_screen.dart';
+import 'package:Shinydeal/features/auth/app/auth_controller.dart';
+import 'package:Shinydeal/features/auth/dom/auth_repository.dart';
+import 'package:Shinydeal/features/core/fields/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:Shinydeal/features/login/presentation/login_screen.dart';
+import 'package:Shinydeal/features/newpassword/presentation/newpassword_screen.dart';
+import 'package:Shinydeal/features/profile/presentation/profile_screen.dart';
+import 'package:Shinydeal/features/signup/presentation/signup_screen.dart';
+import 'package:Shinydeal/features/welcome/welcome_screen.dart';
 
 final _gkey = GlobalKey<NavigatorState>();
 

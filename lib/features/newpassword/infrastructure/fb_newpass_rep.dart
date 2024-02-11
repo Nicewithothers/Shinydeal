@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menetrend_app/features/newpassword/dom/newpass_form.dart';
+import 'package:Shinydeal/features/newpassword/dom/newpass_form.dart';
 
 class FirebaseNewPassRepository extends NewPassRepo {
   @override

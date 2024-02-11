@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menetrend_app/features/core/model/user.dart' as data;
-import 'package:menetrend_app/features/signup/dom/signup_form.dart';
-import 'package:menetrend_app/features/signup/dom/signup_rep.dart';
+import 'package:Shinydeal/features/core/model/user.dart' as data;
+import 'package:Shinydeal/features/signup/dom/signup_form.dart';
+import 'package:Shinydeal/features/signup/dom/signup_rep.dart';
 
 class FirebaseSignupRepository extends SignupRepo {
   @override

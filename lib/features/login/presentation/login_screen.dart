@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:menetrend_app/features/core/fields/email_field.dart';
-import 'package:menetrend_app/features/core/fields/password_field.dart';
-import 'package:menetrend_app/features/login/app/login_controller.dart';
+import 'package:Shinydeal/features/core/fields/email_field.dart';
+import 'package:Shinydeal/features/core/fields/password_field.dart';
+import 'package:Shinydeal/features/login/app/login_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
     Future<void> _signIn(WidgetRef ref) async {
+    final _locale = AppLocalizations.of(ref.context);
     final router = GoRouter.of(ref.context);
     final scaffoldMessenger = ScaffoldMessenger.of(ref.context);
     final signupCtrl = ref.read(signinCtrlProvider.notifier);
@@ -19,10 +21,10 @@ class LoginScreen extends ConsumerWidget {
           actions: [
              TextButton(
               onPressed: () => scaffoldMessenger.removeCurrentMaterialBanner(),
-              child: const Text('Dismiss')
+              child: Text(_locale!.cancelButton)
             )
           ],
-          content: Text('Signed in as ${user.email}!')
+          content: Text('${_locale.signedIn} ${user.email}!')
           )
       );
       router.go('/jewelleryorder');
@@ -31,21 +33,22 @@ class LoginScreen extends ConsumerWidget {
         context: ref.context,
         builder: (context) {
           return AlertDialog(
-            content: const Text("Failed to sign in! Try again!"),
+            content: Text(_locale!.loginError),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Retry"))
+                child: Text(_locale.retryButton))
             ],
             icon: const Icon(Icons.warning)
           );
         }
-        );
+      );
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _locale = AppLocalizations.of(ref.context);
     final loginForm = ref.watch(signinCtrlProvider);
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -73,8 +76,8 @@ class LoginScreen extends ConsumerWidget {
                       Column(
                         children: [
                           const SizedBox(height: 50),
-                          const Text('Login',
-                              style: TextStyle(
+                          Text(_locale!.login,
+                              style: const TextStyle(
                                   fontSize: 48,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white)),
@@ -99,14 +102,14 @@ class LoginScreen extends ConsumerWidget {
                                   const Color.fromRGBO(255, 255, 255, 1),
                               elevation: 12,
                             ),
-                            child: Text('Login'.toUpperCase()),
+                            child: Text(_locale.login),
                           ),
                           TextButton(
                               onPressed: () => context.go('/newpassword'),
                               style: const ButtonStyle(
                                   foregroundColor: MaterialStatePropertyAll(
                                       Color.fromRGBO(255, 255, 255, 1))),
-                              child: const Text("Forgot your password?")),
+                              child: Text(_locale.newPasswordRedirect)),
                         ],
                       ),
                       Column(
@@ -120,8 +123,7 @@ class LoginScreen extends ConsumerWidget {
                               style: const ButtonStyle(
                                   foregroundColor: MaterialStatePropertyAll(
                                       Color.fromRGBO(255, 255, 255, 1))),
-                              child: const Text(
-                                  "Don't have an account? Sign up!")),
+                              child: Text(_locale.signupRedirect)),
                         ],
                       ),
                     ],

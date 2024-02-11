@@ -1,4 +1,4 @@
-import 'package:menetrend_app/features/core/model/user.dart';
+import 'package:Shinydeal/features/core/model/user.dart';
 
 abstract class AuthRepository {
   Stream<AuthState> stateWatch();
@@ -7,7 +7,7 @@ abstract class AuthRepository {
   Future<void> signOutUser();
 }
 
-class AuthState {
+sealed class AuthState {
   const AuthState();
 }
 

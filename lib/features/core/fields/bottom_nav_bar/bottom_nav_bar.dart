@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menetrend_app/features/auth/app/auth_controller.dart';
-import 'package:menetrend_app/features/auth/dom/auth_repository.dart';
-import 'package:menetrend_app/features/core/fields/bottom_nav_bar/bottom_nav_bar_notifier.dart';
-import 'package:menetrend_app/features/jewellery_order/presentation/jewellery_order_screen.dart';
-import 'package:menetrend_app/features/profile/presentation/profile_screen.dart';
+import 'package:Shinydeal/features/auth/app/auth_controller.dart';
+import 'package:Shinydeal/features/auth/dom/auth_repository.dart';
+import 'package:Shinydeal/features/core/fields/bottom_nav_bar/bottom_nav_bar_notifier.dart';
+import 'package:Shinydeal/features/jewellery_order/presentation/jewellery_order_screen.dart';
+import 'package:Shinydeal/features/profile/presentation/profile_screen.dart';
 
 class BottomNavBar extends ConsumerStatefulWidget {
   const BottomNavBar({super.key});
